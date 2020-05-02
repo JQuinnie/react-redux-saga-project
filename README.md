@@ -50,4 +50,5 @@ A generator is a function which returns an object on which you can call `next()`
 `runSaga` function allows starting sagas outside the Redux middleware environment. It also allows you to hook up to external input/output, other than store actions. It returns a task object.
 
 `runSaga(iterator, {subscribe, dispatch}, [monitor])`
+
 `runSaga({dispatch: (action) => dispatched.push(action)}, saga, initialAction)`
