@@ -4,7 +4,7 @@ import { IMAGES } from '../constants';
 import { fetchImageStats } from '../api';
 import { loadImageStats, setImageStats, setImageStatsError } from '../actions';
 
-function* handleStatsRequest(id) {
+export function* handleStatsRequest(id) {
   // edge case, include retry if there was an error
   for (let i = 0; i < 3; i++) {
     try {
@@ -17,6 +17,7 @@ function* handleStatsRequest(id) {
       return true; // exit loop
     } catch (e) {
       // just need to retry and dispatch an error
+      // if tries is more than 3 times
     }
   }
   yield put(setImageStatsError(id));

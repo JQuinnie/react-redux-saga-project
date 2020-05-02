@@ -4,6 +4,10 @@ import { setImages, setError } from '../../actions';
 import { getPage, handleImagesLoad } from '../imagesSaga';
 import * as api from '../../api'; // gives back all the exports from api file
 
+beforeEach(() => {
+  jest.resetAllMocks();
+});
+
 it('should have the getPage selector function give back the page', () => {
   const nextPage = 1;
   const state = { nextPage };
@@ -17,6 +21,8 @@ it('should load images and handle them in case of success', async () => {
   const dispatchedActions = [];
 
   // mock the api function call
+  // api.fetchImages will mutate the dependency which should be reset via cleanup after testing
+  // see beforeEach
   const mockedImages = ['abc', 'div'];
   api.fetchImages = jest.fn(() => Promise.resolve(mockedImages));
 
